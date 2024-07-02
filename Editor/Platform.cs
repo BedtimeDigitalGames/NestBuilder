@@ -42,8 +42,6 @@ namespace BedtimeCore.BuildPipeline
 					return BuildTargetGroup.tvOS;
 				case BuildTarget.Switch:
 					return BuildTargetGroup.Switch;
-				case BuildTarget.Stadia:
-					return BuildTargetGroup.Stadia;
 				case BuildTarget.GameCoreXboxOne:
 					return BuildTargetGroup.GameCoreXboxOne;
 				case BuildTarget.GameCoreXboxSeries:
