@@ -1,0 +1,57 @@
+{
+    "name": "com.bedtime.build-pipeline.Editor",
+    "rootNamespace": "",
+    "references": [
+        "com.bedtime.asset-system.Runtime",
+        "com.bedtime.asset-system.Editor",
+        "com.bedtime.logging.Runtime",
+        "com.bedtime.command-line-arguments.Runtime",
+        "com.bedtime.metadata.Runtime",
+        "com.bedtime.versioning.Runtime",
+        "com.bedtime.versioning.Editor",
+        "Unity.EditorCoroutines.Editor",
+        "com.bedtime.storage"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.bedtime.command-line-arguments",
+            "expression": "1.0.0",
+            "define": "BEDTIME_COMMANDLINE"
+        },
+        {
+            "name": "com.bedtime.logging",
+            "expression": "1.0.0",
+            "define": "BEDTIME_LOGGING"
+        },
+        {
+            "name": "com.bedtime.metadata",
+            "expression": "1.0.0",
+            "define": "BEDTIME_METADATA"
+        },
+        {
+            "name": "com.bedtime.versioning",
+            "expression": "1.0.0",
+            "define": "BEDTIME_VERSIONING"
+        },
+        {
+            "name": "com.bedtime.asset-system",
+            "expression": "1.0.0",
+            "define": "BEDTIME_ASSET_SYSTEM"
+        },
+        {
+            "name": "com.bedtime.storage",
+            "expression": "1.0.0",
+            "define": "BEDTIME_STORAGE"
+        }
+    ],
+    "noEngineReferences": false
+}

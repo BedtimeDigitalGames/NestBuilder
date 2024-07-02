@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement focusable="true" name="root" style="flex-grow: 1; flex-shrink: 0;">
+        <ui:Label tabindex="-1" text="STEAM GUARD" display-tooltip-when-elided="true" style="font-size: 20px; -unity-text-align: upper-center; -unity-font-style: bold; padding-top: 5px; flex-shrink: 1;" />
+        <ui:VisualElement style="align-items: center; padding-top: 10px; padding-bottom: 10px;">
+            <ui:VisualElement>
+                <ui:Label tabindex="-1" text="My special access code is:" display-tooltip-when-elided="true" style="border-left-width: 4px; border-top-width: 2px; border-bottom-width: 2px; -unity-text-align: upper-center;" />
+                <ui:TextField text="AB3XP" name="input-field" max-length="5" style="font-size: 45px; -unity-font-style: bold; width: 200px; white-space: nowrap; height: 55px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; border-top-width: 15px;">
+                <ui:Button text="SUBMIT" display-tooltip-when-elided="true" name="submit-button" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; -unity-font-style: bold; font-size: 14px; border-left-color: rgb(165, 255, 167); border-right-color: rgb(165, 255, 167); border-top-color: rgb(165, 255, 167); border-bottom-color: rgb(165, 255, 167);" />
+                <ui:Button text="CANCEL" display-tooltip-when-elided="true" name="cancel-button" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; -unity-font-style: normal; font-size: 14px; border-top-left-radius: 1px; border-bottom-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

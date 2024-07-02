@@ -1,0 +1,14 @@
+{
+  "name": "com.bedtime.build-pipeline",
+  "displayName": "Build Pipeline",
+  "description": "Build Pipeline",
+  "version": "1.9.1",
+  "author": {
+    "name": "Bedtime Digital Games",
+    "url": "https://git.bedtime.io/unity-packages/com.bedtime.build-pipeline.git"
+  },
+  "dependencies": {
+    "com.unity.editorcoroutines": "1.0.0"
+  },
+  "keywords": []
+}

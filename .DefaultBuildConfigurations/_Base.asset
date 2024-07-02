@@ -1,0 +1,452 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798b949131ae1544a87df2df760b1f65, type: 3}
+  m_Name: _Base
+  m_EditorClassIdentifier: 
+  fallbackConfiguration: {fileID: 0}
+  buildSettings:
+    metadata:
+      isSet: 0
+      value:
+        storage:
+          internalStorage: []
+    companyName:
+      isSet: 1
+      value: Company Name
+    productName:
+      isSet: 1
+      value: Product Name
+    version:
+      isSet: 1
+      value: 1.0.0
+    platform:
+      isSet: 0
+      value:
+        buildTarget: 0
+    scriptingBackend:
+      isSet: 1
+      value: 0
+    APICompatabilityLevel:
+      isSet: 1
+      value: 6
+    scriptingDefineSymbols:
+      isSet: 0
+      value: 
+    scenes:
+      isSet: 0
+      value:
+      - Assets/Scenes/Start.unity
+      scenes: []
+    locationPathName:
+      isSet: 1
+      value: $WORKSPACE_PATH$/BUILDS/$CONFIGURATION_NAME$/$DATE$/$PRODUCT_NAME$.$FILE_TYPE$
+    autoConnectProfiler:
+      isSet: 0
+      value: 0
+    allowDebugging:
+      isSet: 0
+      value: 0
+    buildScriptsOnly:
+      isSet: 0
+      value: 0
+    development:
+      isSet: 1
+      value: 0
+    enableHeadlessMode:
+      isSet: 0
+      value: 0
+    explicitDivideByZeroChecks:
+      isSet: 1
+      value: 1
+    explicitNullChecks:
+      isSet: 1
+      value: 1
+    waitForManagedDebugger:
+      isSet: 0
+      value: 0
+    bedLogEnabled:
+      isSet: 0
+      value: 0
+    logLevel:
+      isSet: 0
+      value: 0
+    logTargets:
+      isSet: 0
+      value: 0
+    preConfigurationStep:
+      isSet: 0
+      selected: 0
+      selectedImplementations: []
+    postConfigurationStep:
+      isSet: 0
+      selected: 0
+      selectedImplementations: []
+    preBuildStep:
+      isSet: 0
+      selected: 0
+      selectedImplementations: []
+    postBuildStep:
+      isSet: 0
+      selected: 0
+      selectedImplementations: []
+    defaultCursor:
+      isSet: 0
+      value: {fileID: 0}
+    cursorHotSpot:
+      isSet: 0
+      value: {x: 0, y: 0}
+    il2cppCompilerConfiguration:
+      isSet: 0
+      value: 0
+    applicationIdentifier:
+      isSet: 0
+      value: 
+    multiThreadedRendering:
+      isSet: 1
+      value: 1
+    stripEngineCode:
+      isSet: 0
+      value: 0
+    stripUnusedMeshComponents:
+      isSet: 0
+      value: 0
+    use32BitDisplayBuffer:
+      isSet: 0
+      value: 0
+    useAnimatedAutorotation:
+      isSet: 0
+      value: 0
+    useHDRDisplay:
+      isSet: 0
+      value: 0
+    useMacAppStoreValidation:
+      isSet: 0
+      value: 0
+    usePlayerLog:
+      isSet: 1
+      value: 1
+    allowedAutorotateToLandscapeLeft:
+      isSet: 0
+      value: 0
+    allowedAutorotateToLandscapeRight:
+      isSet: 0
+      value: 0
+    allowedAutorotateToPortrait:
+      isSet: 0
+      value: 0
+    allowedAutorotateToPortraitUpsideDown:
+      isSet: 0
+      value: 0
+    allowFullscreenSwitch:
+      isSet: 0
+      value: 0
+    runInBackground:
+      isSet: 0
+      value: 0
+    visibleInBackground:
+      isSet: 0
+      value: 0
+    captureSingleScreen:
+      isSet: 0
+      value: 0
+    fullScreenMode:
+      isSet: 0
+      value: 0
+    enableInternalProfiler:
+      isSet: 1
+      value: 1
+    enableCrashReportAPI:
+      isSet: 1
+      value: 1
+    forceSingleInstance:
+      isSet: 0
+      value: 0
+    muteOtherAudioSources:
+      isSet: 0
+      value: 0
+    bakeCollisionMeshes:
+      isSet: 0
+      value: 0
+    GPUSkinning:
+      isSet: 1
+      value: 1
+    graphicsJobs:
+      isSet: 1
+      value: 1
+    showSplashScreen:
+      isSet: 1
+      value: 0
+    switchCreateRomFile:
+      isSet: 0
+      value: 0
+    switchEnableDebugPad:
+      isSet: 0
+      value: 0
+    switchNVNGraphicsDebugger:
+      isSet: 0
+      value: 0
+    switchRedirectWritesToHostMount:
+      isSet: 0
+      value: 0
+    switchApplicationID:
+      isSet: 0
+      value: 
+    switchMainThreadStackSize:
+      isSet: 0
+      value: 0
+    switchNetworkInterfaceManagerInitializeEnabled:
+      isSet: 0
+      value: 0
+    switchPlayerConnectionEnabled:
+      isSet: 0
+      value: 0
+    switchPresenceGroupId:
+      isSet: 0
+      value: 
+    switchScreenResolutionBehavior:
+      isSet: 0
+      value: 0
+    switchSocketConfigEnabled:
+      isSet: 0
+      value: 0
+    switchSocketInitializeEnabled:
+      isSet: 0
+      value: 0
+    switchStartupUserAccount:
+      isSet: 0
+      value: 0
+    switchUserAccountSaveDataJournalSize:
+      isSet: 0
+      value: 0
+    switchUserAccountSaveDataSize:
+      isSet: 0
+      value: 0
+    switchUseSwitchCPUProfiler:
+      isSet: 0
+      value: 0
+    switchAccessibleURLPath:
+      isSet: 0
+      value: 
+    switchCardSpecClock:
+      isSet: 0
+      value: 0
+    switchCardSpecSize:
+      isSet: 0
+      value: 0
+    switchIsAllowsVideoCapture:
+      isSet: 0
+      value: 0
+    switchLegalInformationPath:
+      isSet: 0
+      value: 
+    switchNsoDependencies:
+      isSet: 0
+      value: 
+    switchReleaseVersion:
+      isSet: 0
+      value: 
+    switchSupportedLanguages:
+      isSet: 0
+      value: 0
+    switchAvailableRatingCategories:
+      isSet: 0
+      value: 0
+    switchLanguageSettings:
+      isSet: 0
+      value:
+        settings:
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+        - language: 0
+          icon: {fileID: 0}
+          publisher: 
+          smallIcon: {fileID: 0}
+          title: 
+    ps4ContentID:
+      isSet: 0
+      value: 
+    ps4AppVersion:
+      isSet: 0
+      value: 
+    ps4MasterVersion:
+      isSet: 0
+      value: 
+    ps4NpTitlePath:
+      isSet: 0
+      value: 
+    ps4NpTrophyPackPath:
+      isSet: 0
+      value: 
+    ps4ParentalLockLevel:
+      isSet: 0
+      value: 0
+    ps5ParamFile:
+      isSet: 0
+      value: 
+    ps5NpConfigFile:
+      isSet: 0
+      value: 
+    appleDeveloperTeamID:
+      isSet: 0
+      value: 
+    BuildAppBundle:
+      isSet: 0
+      value: 0
+    bundleVersionCode:
+      isSet: 0
+      value: 0
+    UseCustomKeyStore:
+      isSet: 0
+      value: 0
+    keyStorePath:
+      isSet: 0
+      value: 
+    keyStorePassword:
+      isSet: 0
+      value: 
+    keyStoreAlias:
+      isSet: 0
+      value: 
+    keyStoreAliasPassword:
+      isSet: 0
+      value: 
+    webglThreadsSupport:
+      isSet: 0
+      value: 0
+    webglDataCaching:
+      isSet: 0
+      value: 0
+    webglDebugSymbols:
+      isSet: 0
+      value: 0
+    webglAnalyzeBuildSize:
+      isSet: 0
+      value: 0
+    webglUseEmbeddedResources:
+      isSet: 0
+      value: 0
+    webglNameFilesAsHashes:
+      isSet: 0
+      value: 0
+    webglEmscriptenArgs:
+      isSet: 0
+      value: 
+    webglExceptionSupport:
+      isSet: 0
+      value: 0
+    webglLinkerTarget:
+      isSet: 0
+      value: 0
+    webglCompressionFormat:
+      isSet: 0
+      value: 0
+    steamSetLiveOnBranch:
+      isSet: 0
+      value: 
+    steamAppID:
+      isSet: 0
+      value: 0
+    steamDepotID:
+      isSet: 0
+      value: 0
+    steamSDKPath:
+      isSet: 0
+      value: 
+    steamLogin:
+      isSet: 0
+      value: 
+    steamPassword:
+      isSet: 0
+      value: 
+    epicProductId:
+      isSet: 0
+      value: 
+    epicClientId:
+      isSet: 0
+      value: 
+    epicClientSecret:
+      isSet: 0
+      value: 
+    epicEncryptionKey:
+      isSet: 0
+      value: 
+  references:
+    version: 2
+    RefIds: []
