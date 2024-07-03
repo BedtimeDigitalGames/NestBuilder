@@ -128,7 +128,7 @@ namespace BedtimeCore.SteamUploader
 		
 		Task<FileInfo> RetrieveSDK(Build build)
 		{
-			if (!Secrets.TryGetValue(build.Configuration.BuildSettings.steamSDKPath.Value, out var sdkPath))
+			if (!Secrets.TryGetValue(build.Configuration.BuildSettings.Steam.SDKPath.Value, out var sdkPath))
 			{
 				var log = $"Missing Steam SDK path secret";
 				Report(log, 0.2f);
@@ -157,9 +157,9 @@ namespace BedtimeCore.SteamUploader
 			var contentRoot = new DirectoryInfo($"{build.OutputDirectory}"); 
 			contentRoot.Create();
 
-			var appID = config.BuildSettings.steamAppID;
-			var depotID = config.BuildSettings.steamDepotID;
-			var setLiveBranch = config.BuildSettings.steamSetLiveOnBranch;
+			var appID = config.BuildSettings.Steam.AppID;
+			var depotID = config.BuildSettings.Steam.DepotID;
+			var setLiveBranch = config.BuildSettings.Steam.SetLiveOnBranch;
 			
 			var dateTime = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
 			var description = dateTime;
@@ -203,8 +203,8 @@ namespace BedtimeCore.SteamUploader
 		
 		(string login, string password)? GetCredentials(Build build)
 		{
-			var login = build.Configuration.BuildSettings.steamLogin;
-			var password = build.Configuration.BuildSettings.steamPassword;
+			var login = build.Configuration.BuildSettings.Steam.Login;
+			var password = build.Configuration.BuildSettings.Steam.Password;
 
 			if (!Secrets.TryGetValue(login.Value, out var user) || !Secrets.TryGetValue(password.Value, out var pass))
 			{

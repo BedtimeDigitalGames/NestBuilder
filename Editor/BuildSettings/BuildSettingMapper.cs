@@ -4,9 +4,9 @@ using UnityEditor.Build;
 namespace BedtimeCore.BuildPipeline
 {
 	/// <summary>
-	///     General settings
+	/// Settings that cannot always be mapped one-to-one with the Unity API.
 	/// </summary>
-	public static partial class BuildSettingMapper
+	public static class BuildSettingMapper
 	{
 		public static Il2CppCompilerConfiguration Il2CPPCompilerConfiguration
 		{

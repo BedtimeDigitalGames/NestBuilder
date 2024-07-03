@@ -11,7 +11,7 @@ namespace BedtimeCore.SteamUploader
 		
 		public void OnGUI(Build build)
 		{
-            var buttonText = "Upload to Steam (" + build.Configuration.BuildSettings.steamSetLiveOnBranch.Value + ")";
+            var buttonText = "Upload to Steam (" + build.Configuration.BuildSettings.Steam.SetLiveOnBranch.Value + ")";
 			if (_uploader.IsBusy)
 			{
 				buttonText = "Please Wait";
@@ -20,7 +20,7 @@ namespace BedtimeCore.SteamUploader
 			if(build.Metadata.Contains(SteamUploader.UPLOAD_COMPLETE_METADATA))
 			{
 				GUI.enabled = false;
-				buttonText = "Upload Complete (" + build.Configuration.BuildSettings.steamSetLiveOnBranch.Value + ")";
+				buttonText = "Upload Complete (" + build.Configuration.BuildSettings.Steam.SetLiveOnBranch.Value + ")";
 			}
 			if(build.Metadata.Contains(SteamUploader.UPLOAD_FAILED_METADATA))
 			{
@@ -43,16 +43,16 @@ namespace BedtimeCore.SteamUploader
 
 			var settings = build.Configuration.BuildSettings;
 
-			if (settings.platform.Value.AsBuildTargetGroup != BuildTargetGroup.Standalone)
+			if (settings.Platform.Value.AsBuildTargetGroup != BuildTargetGroup.Standalone)
 			{
 				return false;
 			}
 			
-			var login = settings.steamLogin;
-			var pass = settings.steamPassword;
-			var appID = settings.steamAppID;
-			var depotID = settings.steamDepotID;
-			var sdkPath = settings.steamSDKPath;
+			var login = settings.Steam.Login;
+			var pass = settings.Steam.Password;
+			var appID = settings.Steam.AppID;
+			var depotID = settings.Steam.DepotID;
+			var sdkPath = settings.Steam.SDKPath;
 
 			if (!login.IsSet || !pass.IsSet || !appID.IsSet || !depotID.IsSet || !sdkPath.IsSet)
 			{

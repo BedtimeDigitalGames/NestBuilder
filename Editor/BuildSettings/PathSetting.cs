@@ -69,7 +69,7 @@ namespace BedtimeCore.BuildPipeline
 		{
 			const string FALLBACK_EXTENSION = "invalid";
 
-			var platform = environment.BuildSettings.platform;
+			var platform = environment.BuildSettings.Platform;
 			var target = platform.Value.buildTarget;
 
 			switch (target)
@@ -82,7 +82,7 @@ namespace BedtimeCore.BuildPipeline
 				case BuildTarget.StandaloneLinux64:
 					return "x86_64";
 				case BuildTarget.Android:
-					if (environment.BuildSettings.buildAppBundle)
+					if (environment.BuildSettings.Android.buildAppBundle)
                     {
 						return "aab";
                     }
@@ -146,10 +146,10 @@ namespace BedtimeCore.BuildPipeline
 				environment = Owner;
 			}
 
-			var platform = environment.BuildSettings.platform;
-			var companyName = environment.BuildSettings.companyName;
-			var productName = environment.BuildSettings.productName;
-			var version = environment.BuildSettings.version;
+			var platform = environment.BuildSettings.Platform;
+			var companyName = environment.BuildSettings.CompanyName;
+			var productName = environment.BuildSettings.ProductName;
+			var version = environment.BuildSettings.Version;
 
 			if (platform != null)
 			{

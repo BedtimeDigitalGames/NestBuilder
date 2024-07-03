@@ -273,10 +273,10 @@ namespace BedtimeCore.BuildPipeline
 			var settings = build.Configuration.BuildSettings;
 			var processorSetting = buildStep switch
 			{
-				BuildStep.PreConfiguration => settings.preConfigurationStep, 
-				BuildStep.PostConfiguration => settings.postConfigurationStep,
-				BuildStep.PreBuild => settings.preBuildStep,
-				BuildStep.PostBuild => settings.postBuildStep,
+				BuildStep.PreConfiguration => settings.BuildSteps.PreConfigurationStep, 
+				BuildStep.PostConfiguration => settings.BuildSteps.PostConfigurationStep,
+				BuildStep.PreBuild => settings.BuildSteps.PreBuildStep,
+				BuildStep.PostBuild => settings.BuildSteps.PostBuildStep,
 				_ => null,
 			};
 
@@ -332,11 +332,11 @@ namespace BedtimeCore.BuildPipeline
 
 			var settings = configuration.BuildSettings;
 
-			var development = settings.development.Value;
-			var allowDebugging = settings.allowDebugging.Value;
-			var autoConnectProfiler = settings.autoConnectProfiler.Value;
-			var buildScriptsOnly = settings.buildScriptsOnly.Value;
-			var platform = settings.platform.Value;
+			var development = settings.Debugging.IsDevelopment.Value;
+			var allowDebugging = settings.Debugging.AllowDebugging.Value;
+			var autoConnectProfiler = settings.Debugging.AutoConnectProfiler.Value;
+			var buildScriptsOnly = settings.Debugging.BuildScriptsOnly.Value;
+			var platform = settings.Platform.Value;
 
 			buildOptions |= BuildOptions.DetailedBuildReport;
 			
@@ -364,9 +364,9 @@ namespace BedtimeCore.BuildPipeline
 		{
 			var playerOptions = new BuildPlayerOptions();
 			var settings = configuration.BuildSettings;
-			var platform = settings.platform;
-			var scenes = settings.scenes;
-			var locationSetting = settings.locationPathName.GetCascaded();
+			var platform = settings.Platform;
+			var scenes = settings.Scenes;
+			var locationSetting = settings.LocationPathName.GetCascaded();
 			
 			if (settings == null || !platform.IsSet || !scenes.IsSet || !locationSetting.IsSet)
 			{

@@ -30,13 +30,20 @@ namespace BedtimeCore.BuildPipeline
 		private void Initialize()
 		{
 			var tempList = new List<IBuildSetting>();
-			const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy;
 			Type configurationType = BuildSettings.GetType();
-			foreach (FieldInfo fInfo in configurationType.GetFields(FLAGS))
+			FindSettings(configurationType, BuildSettings, tempList);
+			settings = tempList.AsReadOnly();
+		}
+
+		private void FindSettings(Type type, object instance, List<IBuildSetting> tempList)
+		{
+			const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy;
+			
+			foreach (FieldInfo fInfo in type.GetFields(FLAGS))
 			{
 				if (typeof(IBuildSetting).IsAssignableFrom(fInfo.FieldType))
 				{
-					var setting = configurationType.GetField(fInfo.Name, FLAGS)?.GetValue(BuildSettings) as IBuildSetting;
+					var setting = type.GetField(fInfo.Name, FLAGS)?.GetValue(instance) as IBuildSetting;
 					if(setting == null)
 					{
 						continue;
@@ -44,9 +51,16 @@ namespace BedtimeCore.BuildPipeline
 					setting.Initialize(fInfo.Name, this, fInfo.GetCustomAttributes(typeof(Attribute), true) as Attribute[]);
 					tempList.Add(setting);
 				}
+				else if (typeof(ISettingsContainer).IsAssignableFrom(fInfo.FieldType))
+				{
+					var container = type.GetField(fInfo.Name, FLAGS)?.GetValue(instance) as ISettingsContainer;
+					if(container == null)
+					{
+						continue;
+					}
+					FindSettings(fInfo.FieldType, container, tempList);
+				}
 			}
-
-			settings = tempList.AsReadOnly();
 		}
 
 		[SerializeField]
@@ -156,7 +170,7 @@ namespace BedtimeCore.BuildPipeline
 				return true;
 			}
 
-			var platform = BuildSettings.platform.GetCascaded();
+			var platform = BuildSettings.Platform.GetCascaded();
 			if (platform == null)
 			{
 				return false;
@@ -173,7 +187,7 @@ namespace BedtimeCore.BuildPipeline
 			var backendRestriction = setting.GetAttribute<ScriptingBackendRestrictionAttribute>();
 			if (backendRestriction != null)
 			{
-				var backend = BuildSettings.scriptingBackend.Value;
+				var backend = BuildSettings.ScriptingBackend.Value;
 				return backendRestriction.IsAllowed(backend);
 			}
 

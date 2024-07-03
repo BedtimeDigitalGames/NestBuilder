@@ -15,7 +15,7 @@ namespace BedtimeCore.BuildPipeline
 
 		public override void ApplyToEditor(BuildConfiguration configuration)
 		{
-			Platform platform = configuration.BuildSettings.platform.Value;
+			Platform platform = configuration.BuildSettings.Platform.Value;
 			string newSymbols = ValueSelf;
 			
 			#if BEDTIME_LOGGING
@@ -36,7 +36,7 @@ namespace BedtimeCore.BuildPipeline
 		{
 			get
 			{
-				var platform = Owner.BuildSettings.platform.Value;
+				var platform = Owner.BuildSettings.Platform.Value;
 				return PlayerSettings.GetScriptingDefineSymbols(platform.AsNamedBuildTarget) != ValueSelf;
 			}
 		}
