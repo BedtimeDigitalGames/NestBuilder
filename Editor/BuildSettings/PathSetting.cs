@@ -131,15 +131,26 @@ namespace BedtimeCore.NestBuilder
 
 
 			value = EditorGUILayout.TextField(value, GUILayout.Height(20));
-			EditorGUILayout.BeginVertical(EditorStyles.helpBox); 
-			EditorGUILayout.LabelField($"{ParsePath(value, environment, true)}", RichText);
+			EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+			var label = ParsePath(value, environment, true);
+			EditorGUILayout.LabelField(label, RichText);
 			EditorGUILayout.EndVertical();
 		}
 
 		public string ParsePath(string path, BuildConfiguration environment, bool richColor = false)
 		{
 			path = path ?? "";
-			Func<string, string> enrich = (string x) => richColor ? (GUI.enabled ? "<color=lime>" : "<color=green>") + x + "</color>" : x;
+			Func<string, string> enrich = x =>
+			{
+				if (richColor)
+				{
+					return $"{(GUI.enabled ? "<color=yellow>" : "<color=green>")}{x}</color>";
+				}
+				else
+				{
+					return x;
+				}
+			};
 
 			if (environment == null)
 			{

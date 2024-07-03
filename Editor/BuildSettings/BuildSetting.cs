@@ -87,11 +87,6 @@ namespace BedtimeCore.NestBuilder
 				EditorGUI.EndDisabledGroup();
 			}
 
-			if (GUILayout.Button("x", EditorStyles.miniButton, GUILayout.MaxWidth(20), GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight)))
-			{
-				value = GetEditorValue();
-			}
-			
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUI.BeginDisabledGroup(parentOwner || !IsSetSelf);
@@ -186,7 +181,5 @@ namespace BedtimeCore.NestBuilder
 				return false;
 			}
 		}
-
-		public virtual T GetEditorValue() => default;
 	}
 }

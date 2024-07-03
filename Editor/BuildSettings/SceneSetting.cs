@@ -36,22 +36,6 @@ namespace BedtimeCore.NestBuilder
 		public override void DrawValue(BuildConfiguration topLevel, SerializedProperty property)
 		{
 			Initialize();
-			
-#if BEDTIME_ASSET_SYSTEM && BEDTIME_STORAGE
-			if(topLevel.BuildSettings.assetBundlesCopy.Value.copyAssetBundles)
-			{
-				var messageType = reorderableList?.list?.Count > 1 ? MessageType.Warning : MessageType.Info;
-				EditorGUILayout.BeginHorizontal();
-				EditorGUILayout.HelpBox("You are using AssetBundles. You should only have an empty scene here.", messageType);
-				if (GUILayout.Button("Get Empty", GUILayout.ExpandHeight(true)))
-				{
-					var scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(EditorAssetManager.EditorModeEmptyScene.Value);
-					scenes.Clear();
-					scenes.Add(scene);
-				}
-				EditorGUILayout.EndHorizontal();
-			}
-#endif
 			reorderableList.DoLayoutList();
 		} 
 
