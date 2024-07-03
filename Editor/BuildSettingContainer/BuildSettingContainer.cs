@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
-using BedtimeCore.Persistence;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
 #if BEDTIME_LOGGING
 using BedtimeCore.ProjectSettings;
+#endif
+#if BEDTIME_METADATA
+using BedtimeCore.Persistence;
 #endif
 
 namespace BedtimeCore.BuildPipeline
