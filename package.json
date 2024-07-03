@@ -1,11 +1,11 @@
 {
-  "name": "com.bedtime.build-pipeline",
-  "displayName": "Build Pipeline",
-  "description": "Build Pipeline",
-  "version": "1.9.1",
+  "name": "com.bedtime.nest-builder",
+  "displayName": "NestBuilder",
+  "description": "NestBuilder",
+  "version": "2.0.0",
   "author": {
     "name": "Bedtime Digital Games",
-    "url": "https://git.bedtime.io/unity-packages/com.bedtime.build-pipeline.git"
+    "url": "https://github.com/BedtimeDigitalGames/NestBuilder.git"
   },
   "dependencies": {
     "com.unity.editorcoroutines": "1.0.0"

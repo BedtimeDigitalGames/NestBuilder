@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class EnumSetting<T>  : BuildSetting<T> where T : unmanaged, Enum

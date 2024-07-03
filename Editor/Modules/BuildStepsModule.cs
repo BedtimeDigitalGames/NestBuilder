@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class BuildStepsContainer : ISettingsContainer
+	public class BuildStepsModule : ISettingsModule
 	{
 		[Category("BuildStep Methods")]
 		public BuildProcessorSetting PreConfigurationStep = new(BuildStep.PreConfiguration);

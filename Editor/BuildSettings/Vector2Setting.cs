@@ -2,7 +2,7 @@
 using UnityEditor;
 using System;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class Vector2Setting : BuildSetting<Vector2>

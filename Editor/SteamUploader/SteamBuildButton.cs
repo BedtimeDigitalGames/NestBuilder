@@ -1,4 +1,4 @@
-using BedtimeCore.BuildPipeline;
+using BedtimeCore.NestBuilder;
 using UnityEditor;
 using UnityEngine;
 #pragma warning disable 4014
@@ -43,7 +43,7 @@ namespace BedtimeCore.SteamUploader
 
 			var settings = build.Configuration.BuildSettings;
 
-			if (settings.Platform.Value.AsBuildTargetGroup != BuildTargetGroup.Standalone)
+			if (settings.Main.Platform.Value.AsBuildTargetGroup != BuildTargetGroup.Standalone)
 			{
 				return false;
 			}

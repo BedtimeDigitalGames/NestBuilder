@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class IOSContainer : ISettingsContainer
+	public class IOSModule : ISettingsModule
 	{
 		[Category("iOS")]
 		public StringSetting AppleDeveloperTeamID = new(x => PlayerSettings.iOS.appleDeveloperTeamID = x);

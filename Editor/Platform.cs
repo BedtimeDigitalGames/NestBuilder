@@ -2,7 +2,7 @@
 using System;
 using UnityEditor.Build;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 
 	[Serializable]

@@ -3,10 +3,10 @@ using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class StandaloneContainer : ISettingsContainer
+	public class StandaloneModule : ISettingsModule
 	{
 		[Category("Standalone"), PlatformRestriction(BuildTargetGroup.Standalone)]
 		public Texture2DSetting DefaultCursor = new(x => PlayerSettings.defaultCursor = x);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Flags]
 	public enum BuildStep

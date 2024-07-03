@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 // ReSharper disable JoinDeclarationAndInitializer
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	public static class Secrets
 	{

@@ -4,7 +4,7 @@ using System;
 using BedtimeCore.ProjectSettings;
 #endif
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class ScriptingDefineSymbolsSetting : StringSetting
@@ -15,11 +15,11 @@ namespace BedtimeCore.BuildPipeline
 
 		public override void ApplyToEditor(BuildConfiguration configuration)
 		{
-			Platform platform = configuration.BuildSettings.Platform.Value;
+			Platform platform = configuration.BuildSettings.Main.Platform.Value;
 			string newSymbols = ValueSelf;
 			
 			#if BEDTIME_LOGGING
-			var loggingEnabledSetting = configuration.BuildSettings.bedLogEnabled;
+			var loggingEnabledSetting = configuration.BuildSettings.BedtimeLogging.bedLogEnabled;
 			var loggingEnabled = loggingEnabledSetting.IsSet ? loggingEnabledSetting.Value : LogSettings.LoggingEnabled;
 			newSymbols = LogSettingsUtility.AddOrRemoveLoggingSymbol(ValueSelf, loggingEnabled);
 			#endif
@@ -36,7 +36,7 @@ namespace BedtimeCore.BuildPipeline
 		{
 			get
 			{
-				var platform = Owner.BuildSettings.Platform.Value;
+				var platform = Owner.BuildSettings.Main.Platform.Value;
 				return PlayerSettings.GetScriptingDefineSymbols(platform.AsNamedBuildTarget) != ValueSelf;
 			}
 		}

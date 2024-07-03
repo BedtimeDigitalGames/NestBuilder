@@ -10,7 +10,7 @@ using BedtimeCore.Assets;
 using BedtimeCore.Versioning;
 #endif
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class PathSetting : BuildSetting<string>
@@ -69,7 +69,7 @@ namespace BedtimeCore.BuildPipeline
 		{
 			const string FALLBACK_EXTENSION = "invalid";
 
-			var platform = environment.BuildSettings.Platform;
+			var platform = environment.BuildSettings.Main.Platform;
 			var target = platform.Value.buildTarget;
 
 			switch (target)
@@ -146,10 +146,10 @@ namespace BedtimeCore.BuildPipeline
 				environment = Owner;
 			}
 
-			var platform = environment.BuildSettings.Platform;
-			var companyName = environment.BuildSettings.CompanyName;
-			var productName = environment.BuildSettings.ProductName;
-			var version = environment.BuildSettings.Version;
+			var platform = environment.BuildSettings.Main.Platform;
+			var companyName = environment.BuildSettings.Application.CompanyName;
+			var productName = environment.BuildSettings.Application.ProductName;
+			var version = environment.BuildSettings.Application.Version;
 
 			if (platform != null)
 			{

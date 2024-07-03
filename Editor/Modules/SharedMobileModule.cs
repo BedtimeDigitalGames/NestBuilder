@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class SharedMobileContainer : ISettingsContainer
+	public class SharedMobileModule : ISettingsModule
 	{
 		[Category("iOS/Android")]
 		public BoolSetting EnableInternalProfiler = new(x => PlayerSettings.enableInternalProfiler = x);

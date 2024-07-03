@@ -3,7 +3,7 @@ using UnityEditor;
 using System;
 using BedtimeCore.Assets;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public sealed class AssetBundleBuildInfoSetting : BuildSetting<AssetBundleBuildInfo>

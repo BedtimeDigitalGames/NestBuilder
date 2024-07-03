@@ -7,7 +7,7 @@ using UnityEditorInternal;
 using System.Linq;
 using BedtimeCore.SteamUploader;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class BuildProcessorSetting : BuildSetting<List<IBuildProcessor>>

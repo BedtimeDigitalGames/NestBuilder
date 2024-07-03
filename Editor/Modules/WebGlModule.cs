@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class WebGlContainer : ISettingsContainer
+	public class WebGlModule : ISettingsModule
 	{
 		[Category("WebGL")]
 		public BoolSetting ThreadsSupport = new(x => PlayerSettings.WebGL.threadsSupport = x);

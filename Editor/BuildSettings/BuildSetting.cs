@@ -3,7 +3,7 @@ using UnityEditor;
 using System;
 using System.Linq;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public abstract class BuildSetting<T> : IBuildSetting, IEquatable<BuildSetting<T>>

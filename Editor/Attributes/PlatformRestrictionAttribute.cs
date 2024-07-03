@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 
 	[AttributeUsage(AttributeTargets.Field)]

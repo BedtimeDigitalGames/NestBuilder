@@ -20,7 +20,7 @@ using BedtimeCore.Assets;
 
 #pragma warning disable 4014
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	public static class Builder
@@ -336,7 +336,7 @@ namespace BedtimeCore.BuildPipeline
 			var allowDebugging = settings.Debugging.AllowDebugging.Value;
 			var autoConnectProfiler = settings.Debugging.AutoConnectProfiler.Value;
 			var buildScriptsOnly = settings.Debugging.BuildScriptsOnly.Value;
-			var platform = settings.Platform.Value;
+			var platform = settings.Main.Platform.Value;
 
 			buildOptions |= BuildOptions.DetailedBuildReport;
 			
@@ -364,9 +364,9 @@ namespace BedtimeCore.BuildPipeline
 		{
 			var playerOptions = new BuildPlayerOptions();
 			var settings = configuration.BuildSettings;
-			var platform = settings.Platform;
-			var scenes = settings.Scenes;
-			var locationSetting = settings.LocationPathName.GetCascaded();
+			var platform = settings.Main.Platform;
+			var scenes = settings.Main.Scenes;
+			var locationSetting = settings.Main.LocationPathName.GetCascaded();
 			
 			if (settings == null || !platform.IsSet || !scenes.IsSet || !locationSetting.IsSet)
 			{

@@ -1,9 +1,11 @@
+using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
-	public class PS4Container
+	[Serializable]
+	public class PS4Module : ISettingsModule
 	{
 		[Category("PS4")]
 		public StringSetting ContentID = new(x => PlayerSettings.PS4.contentID = x);
@@ -22,6 +24,6 @@ namespace BedtimeCore.BuildPipeline
 
 		[Category("PS4")]
 		public IntSetting ParentalLockLevel = new(x => PlayerSettings.PS4.parentalLevel = x);
-
+		
 	}
 }

@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class AndroidContainer : ISettingsContainer
+	public class AndroidModule : ISettingsModule
 	{
 		[Category("Android")]
 		public EnumSetting<AndroidArchitecture> TargetArchitecture = new(x => PlayerSettings.Android.targetArchitectures = x);

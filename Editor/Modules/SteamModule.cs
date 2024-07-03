@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class SteamContainer : ISettingsContainer
+	public class SteamModule : ISettingsModule
 	{
 		[Category("Steam")]
 		public StringSetting SetLiveOnBranch = new();

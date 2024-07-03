@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.ComponentModel;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[CustomEditor(typeof(BuildConfiguration), true), CanEditMultipleObjects]
 	public class BuildConfigurationInspector : UnityEditor.Editor

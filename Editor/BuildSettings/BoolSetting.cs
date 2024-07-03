@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using System;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class BoolSetting : BuildSetting<bool>

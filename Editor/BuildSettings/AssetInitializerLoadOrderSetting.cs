@@ -5,7 +5,7 @@ using BedtimeCore.Assets;
 using UnityEditor;
 using UnityEngine;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class AssetInitializerLoadOrderSetting : BuildSetting<AssetInitializerLoadOrder>

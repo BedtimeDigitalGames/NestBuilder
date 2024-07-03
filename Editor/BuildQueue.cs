@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 using System;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	public class BuildQueue : ScriptableObject
 	{

@@ -3,7 +3,7 @@ using System;
 using BedtimeCore.Persistence;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class MetadataSetting : BuildSetting<Metadata>

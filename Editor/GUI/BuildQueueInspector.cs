@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[CustomEditor(typeof(BuildQueue))]
 	public class BuildQueueInspector : UnityEditor.Editor

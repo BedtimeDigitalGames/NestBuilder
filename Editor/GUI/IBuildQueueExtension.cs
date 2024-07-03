@@ -1,4 +1,4 @@
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	public interface IBuildQueueExtension
 	{

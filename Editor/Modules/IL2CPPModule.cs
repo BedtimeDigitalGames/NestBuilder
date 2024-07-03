@@ -3,10 +3,10 @@ using System.ComponentModel;
 using UnityEditor;
 using UnityEditor.Build;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class IL2CPPContainer : ISettingsContainer
+	public class IL2CPPModule : ISettingsModule
 	{
 		[Category("IL2CPP"), ScriptingBackendRestriction(ScriptingImplementation.IL2CPP)]
 		public EnumSetting<Il2CppCompilerConfiguration> CompilerConfiguration = new(x => BuildSettingMapper.Il2CPPCompilerConfiguration = x);

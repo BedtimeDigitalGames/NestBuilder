@@ -6,7 +6,7 @@ using System;
 using BedtimeCore.Assets;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class AssetBundleBuildInfo

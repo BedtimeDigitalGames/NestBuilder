@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using BedtimeCore.BuildPipeline;
+using BedtimeCore.NestBuilder;
 #if BEDTIME_VERSIONING
 using BedtimeCore.Versioning;
 #endif

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Linq;
 using System.Collections.ObjectModel;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public sealed class BuildConfiguration : ScriptableObject, IEquatable<BuildConfiguration>
@@ -31,44 +31,109 @@ namespace BedtimeCore.BuildPipeline
 		{
 			var tempList = new List<IBuildSetting>();
 			Type configurationType = BuildSettings.GetType();
+
+			InitializeSerializedReferences(BuildSettings);
+			
 			FindSettings(configurationType, BuildSettings, tempList);
 			settings = tempList.AsReadOnly();
 		}
 
+		private void InitializeSerializedReferences(SerializedBuildSettings serializedBuildSettings)
+		{
+			if(serializedBuildSettings._additionalContainers == null)
+			{
+				serializedBuildSettings._additionalContainers = new List<ISettingsModule>();
+			}
+			serializedBuildSettings._additionalContainers.RemoveAll(item => item == null);
+			
+			var exclude = typeof(SerializedBuildSettings).GetFields()
+			                                           .Where(f => typeof(ISettingsModule).IsAssignableFrom(f.FieldType))
+			                                           .Select(f => f.FieldType)
+			                                           .ToHashSet();
+			exclude.UnionWith(serializedBuildSettings._additionalContainers.Select(c => c.GetType()));
+			var types = TypeCache.GetTypesDerivedFrom<ISettingsModule>();
+			
+			foreach (Type type in types)
+			{
+				var instance = Activator.CreateInstance(type) as ISettingsModule;
+				if(instance == null)
+				{
+					continue;
+				}
+				if(exclude.Contains(type))
+				{
+					continue;
+				}
+
+				serializedBuildSettings._additionalContainers.Add(instance);
+			}
+		}
+
 		private void FindSettings(Type type, object instance, List<IBuildSetting> tempList)
 		{
-			const BindingFlags FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy;
+			BindingFlags GetFlags(FieldInfo info)
+			{
+				var flags = BindingFlags.Instance | BindingFlags.Public;
+				if (info.GetCustomAttribute<SerializableAttribute>() != null)
+				{
+					flags |= BindingFlags.NonPublic;
+				}
+				return flags;
+			}
 			
-			foreach (FieldInfo fInfo in type.GetFields(FLAGS))
+			foreach (FieldInfo fInfo in type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
 			{
 				if (typeof(IBuildSetting).IsAssignableFrom(fInfo.FieldType))
 				{
-					var setting = type.GetField(fInfo.Name, FLAGS)?.GetValue(instance) as IBuildSetting;
+					var setting = type.GetField(fInfo.Name, GetFlags(fInfo))?.GetValue(instance) as IBuildSetting;
 					if(setting == null)
 					{
-						continue;
+						try
+						{
+							type.GetField(fInfo.Name, GetFlags(fInfo))?.SetValue(instance, Activator.CreateInstance(fInfo.FieldType));
+						}
+						catch (Exception)
+						{
+							continue;
+						}
 					}
 					setting.Initialize(fInfo.Name, this, fInfo.GetCustomAttributes(typeof(Attribute), true) as Attribute[]);
 					tempList.Add(setting);
 				}
-				else if (typeof(ISettingsContainer).IsAssignableFrom(fInfo.FieldType))
+				else if (typeof(ISettingsModule).IsAssignableFrom(fInfo.FieldType))
 				{
-					var container = type.GetField(fInfo.Name, FLAGS)?.GetValue(instance) as ISettingsContainer;
+					var container = type.GetField(fInfo.Name, GetFlags(fInfo))?.GetValue(instance) as ISettingsModule;
 					if(container == null)
 					{
 						continue;
 					}
-					FindSettings(fInfo.FieldType, container, tempList);
+					FindSettings(container.GetType(), container, tempList);
+				}
+				else if(fInfo.FieldType == typeof(List<ISettingsModule>))
+				{
+					var containers = type.GetField(fInfo.Name, GetFlags(fInfo) | BindingFlags.NonPublic)?.GetValue(instance) as List<ISettingsModule>;
+					if(containers == null)
+					{
+						continue;
+					}
+					foreach (var container in containers)
+					{
+						if (container == null)
+						{
+							continue;
+						}
+						FindSettings(container.GetType(), container, tempList);
+					}
 				}
 			}
 		}
 
 		[SerializeField]
-		private BuildSettingContainer buildSettings = new BuildSettingContainer();
+		private SerializedBuildSettings buildSettings = new SerializedBuildSettings();
 
 		private ReadOnlyCollection<IBuildSetting> settings;
 
-		public BuildSettingContainer BuildSettings => buildSettings;
+		public SerializedBuildSettings BuildSettings => buildSettings;
 
 		public bool CanBuild => !GetIllegalSettings().Any();
 
@@ -170,7 +235,7 @@ namespace BedtimeCore.BuildPipeline
 				return true;
 			}
 
-			var platform = BuildSettings.Platform.GetCascaded();
+			var platform = BuildSettings.Main.Platform.GetCascaded();
 			if (platform == null)
 			{
 				return false;
@@ -187,7 +252,7 @@ namespace BedtimeCore.BuildPipeline
 			var backendRestriction = setting.GetAttribute<ScriptingBackendRestrictionAttribute>();
 			if (backendRestriction != null)
 			{
-				var backend = BuildSettings.ScriptingBackend.Value;
+				var backend = BuildSettings.Main.ScriptingBackend.Value;
 				return backendRestriction.IsAllowed(backend);
 			}
 

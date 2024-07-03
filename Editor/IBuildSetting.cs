@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	public interface IBuildSetting
 	{

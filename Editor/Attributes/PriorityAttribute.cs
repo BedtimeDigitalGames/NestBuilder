@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[AttributeUsage(AttributeTargets.Field)]
 	public class PriorityAttribute : Attribute

@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class EpicContainer : ISettingsContainer
+	public class EpicModule : ISettingsModule
 	{
 		[Category("Epic")]
 		public StringSetting ProductId;

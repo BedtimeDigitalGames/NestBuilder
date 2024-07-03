@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class DebugSettingsContainer : ISettingsContainer
+	public class DebugSettingsModule : ISettingsModule
 	{
 		[Category("Debug")]
 		public BoolSetting AutoConnectProfiler = new(x => EditorUserBuildSettings.connectProfiler = x);

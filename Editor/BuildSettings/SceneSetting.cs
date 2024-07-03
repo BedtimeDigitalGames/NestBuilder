@@ -8,7 +8,7 @@ using System.Linq;
 using BedtimeCore.Assets;
 #endif
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
 	public class SceneSetting : BuildSetting<string[]>

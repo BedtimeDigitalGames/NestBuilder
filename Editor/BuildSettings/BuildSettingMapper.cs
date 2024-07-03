@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEditor.Build;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	/// <summary>
 	/// Settings that cannot always be mapped one-to-one with the Unity API.

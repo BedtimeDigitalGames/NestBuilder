@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using UnityEditor;
 
-namespace BedtimeCore.BuildPipeline
+namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public class NintendoSwitchContainer
+	public class NintendoSwitchModule : ISettingsModule
 	{
 		[Category("Nintendo Switch")]
 		public BoolSetting CreateRomFile = new(x => EditorUserBuildSettings.switchCreateRomFile = x);
