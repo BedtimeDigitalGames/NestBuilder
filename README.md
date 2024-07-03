@@ -1,4 +1,4 @@
-# Build Pipeline
+# NestBuilder for Unity
 A configurable build system for Unity that supports multiple configurations as assets, with each configuration able to inherit from other configurations.
 
 ![image](https://github.com/BedtimeDigitalGames/BuildPipeline/assets/1178324/7bc76a74-980f-4886-a5f6-bdd216e47dfd)
@@ -18,6 +18,33 @@ Each configurable value has two important features besides its actual value; The
 You can only modify a value when its overridde toggle is active. If it is not active, the value will be greyed out and show the value from the nearest inherited configuration asset with its override toggled active for that value.
 
 ![image](https://github.com/BedtimeDigitalGames/BuildPipeline/assets/1178324/d7c068bf-f39a-4a75-8ea8-32e5563bfad2)
+
+## Custom Build Settings
+Additional settings can be serialized and configured for your build configurations by creating a class that implements the *ISettingsModule* interface.
+The class must be marked as Serializable.
+
+You can then access these values from any place where a *SerializedBuildConfiguration* is available, for example during a build step or custom editor code.
+You must retrieve the instance of your module by calling *GetModule<T>* on your configuration. 
+
+Your new module can then contain any amount of settings. Each setting can be one of the built in Setting types, or a custom type inheriting from *BuildSetting<T>*.
+Some of the built in types are:
+- BoolSetting : BuildSetting\<bool\>
+- FloatSetting : BuildSetting\<float\>
+- IntSetting : BuildSetting\<int\>
+- SecretSetting : BuildSetting\<string\>
+- EnumSetting : BuildSetting\<T\> where T : unmanaged, Enum
+- PathSetting : BuildSetting\<string\>
+- SceneSetting : BuildSetting\<string[]\>
+- StringSetting : BuildSetting\<string\>
+- Texture2DSetting : BuildSetting\<Texture2D\>
+- Vector2Setting : BuildSetting\<Vector2\>
+
+Most settings will accept a *System.Action\<T\>* in their constructor. If defined, this function will be executed after the **PreConfiguration** build step.
+An example from the built in DebugSettingsModule:
+```
+  [Category("Debug")]
+  public BoolSetting AutoConnectProfiler = new(x => UnityEditor.EditorUserBuildSettings.connectProfiler = x);
+```
 
 ## Custom Build Processors / Build Steps
 By inheriting from the interface *IBuildProcessor* you can add custom processing of a build to your configurations.
