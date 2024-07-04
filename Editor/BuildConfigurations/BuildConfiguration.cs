@@ -40,17 +40,17 @@ namespace BedtimeCore.NestBuilder
 
 		private void InitializeSerializedReferences(SerializedBuildSettings serializedBuildSettings)
 		{
-			if(serializedBuildSettings._additionalContainers == null)
+			if(serializedBuildSettings._additionalModules == null)
 			{
-				serializedBuildSettings._additionalContainers = new List<ISettingsModule>();
+				serializedBuildSettings._additionalModules = new List<ISettingsModule>();
 			}
-			serializedBuildSettings._additionalContainers.RemoveAll(item => item == null);
+			serializedBuildSettings._additionalModules.RemoveAll(item => item == null);
 			
 			var exclude = typeof(SerializedBuildSettings).GetFields()
 			                                           .Where(f => typeof(ISettingsModule).IsAssignableFrom(f.FieldType))
 			                                           .Select(f => f.FieldType)
 			                                           .ToHashSet();
-			exclude.UnionWith(serializedBuildSettings._additionalContainers.Select(c => c.GetType()));
+			exclude.UnionWith(serializedBuildSettings._additionalModules.Select(c => c.GetType()));
 			var types = TypeCache.GetTypesDerivedFrom<ISettingsModule>();
 			
 			foreach (Type type in types)
@@ -65,7 +65,7 @@ namespace BedtimeCore.NestBuilder
 					continue;
 				}
 
-				serializedBuildSettings._additionalContainers.Add(instance);
+				serializedBuildSettings._additionalModules.Add(instance);
 			}
 		}
 

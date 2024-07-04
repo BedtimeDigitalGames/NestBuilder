@@ -8,39 +8,39 @@ namespace BedtimeCore.NestBuilder
 	[Serializable]
 	public class SerializedBuildSettings
 	{
-		public MainModule Main;
+		public MainModule Main = new();
 
-		public ApplicationModule Application;
+		public ApplicationModule Application = new();
 		
-		public GeneralPlayerSettingsModule GeneralPlayerSettings;
+		public GeneralPlayerSettingsModule GeneralPlayerSettings = new();
 
-		public RenderingModule Rendering;
+		public RenderingModule Rendering = new();
 		
-		public IL2CPPModule IL2CPP;
+		public IL2CPPModule IL2CPP = new();
 
-		public BuildStepsModule BuildSteps;
+		public BuildStepsModule BuildSteps = new();
 
-		public DebugSettingsModule Debugging;
+		public DebugSettingsModule Debugging = new();
 
-		public StandaloneModule Standalone;
+		public StandaloneModule Standalone = new();
 
-		public NintendoSwitchModule NintendoSwitch;
+		public NintendoSwitchModule NintendoSwitch = new();
 
-		public PS4Module PS4;
+		public PS4Module PS4 = new();
 		
-		public WebGlModule WebGL;
+		public WebGlModule WebGL = new();
 
-		public SharedMobileModule SharedMobile;
+		public SharedMobileModule SharedMobile = new();
 
-		public IOSModule iOS;
+		public IOSModule iOS = new();
 
-		public AndroidModule Android;
+		public AndroidModule Android = new();
 
-		public SteamModule Steam;
+		public SteamModule Steam = new();
 
-		public EpicModule Epic;
+		public EpicModule Epic = new();
 		
-		public BedtimeLoggingModule BedtimeLogging;
+		public BedtimeLoggingModule BedtimeLogging = new();
 
 		public T GetModule<T>() where T : class, ISettingsModule => GetModules().FirstOrDefault(a => a is T) as T;
 
@@ -52,29 +52,29 @@ namespace BedtimeCore.NestBuilder
 
 		private IEnumerable<ISettingsModule> GetModules()
 		{
-			if (!_defaultContainers.Any())
+			if (!_defaultModules.Any())
 			{
 				var fields = typeof(SerializedBuildSettings).GetFields()
 				                                          .Where(f => typeof(ISettingsModule).IsAssignableFrom(f.FieldType))
 				                                          .Select(f => f.GetValue(this) as ISettingsModule)
 				                                          .Where(c => c != null);
-				_defaultContainers.AddRange(fields);
+				_defaultModules.AddRange(fields);
 			}
 
-			foreach (var container in _defaultContainers)
+			foreach (var container in _defaultModules)
 			{
 				yield return container;
 			}
 				
-			foreach (var container in _additionalContainers)
+			foreach (var container in _additionalModules)
 			{
 				yield return container;
 			}
 		}
-		
+
 		[SerializeReference, SerializeField]
-		internal List<ISettingsModule> _additionalContainers;
-		
-		internal List<ISettingsModule> _defaultContainers = new List<ISettingsModule>();
+		internal List<ISettingsModule> _additionalModules;
+
+		private List<ISettingsModule> _defaultModules = new();
 	}
 }
