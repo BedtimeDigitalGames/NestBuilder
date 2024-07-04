@@ -62,9 +62,12 @@ namespace BedtimeCore.NestBuilder
 			var newSymbols = ValueSelf;
 			
 			#if BEDTIME_LOGGING
-			var loggingEnabledSetting = configuration.BuildSettings.BedtimeLogging.bedLogEnabled;
+			var loggingEnabledSetting = configuration.BuildSettings.BedtimeLogging.BedLogEnabled;
 			var loggingEnabled = loggingEnabledSetting.IsSet ? loggingEnabledSetting.Value : LogSettings.LoggingEnabled;
-			newSymbols = LogSettingsUtility.AddOrRemoveLoggingSymbol(ValueSelf, loggingEnabled);
+			var symbols = string.Join(";", newSymbols);
+			newSymbols = LogSettingsUtility.AddOrRemoveLoggingSymbol(symbols, loggingEnabled)
+			                               .Split(';')
+			                               .ToList();
 			#endif
 			
 			PlayerSettings.SetScriptingDefineSymbols(platform.AsNamedBuildTarget, newSymbols.ToArray());

@@ -287,7 +287,7 @@ namespace BedtimeCore.NestBuilder
 
 		public static void CreateDefaultBuildConfigurations()
 		{
-			var dir = new DirectoryInfo("Packages/com.bedtime.build-pipeline/.DefaultBuildConfigurations");
+			var dir = new DirectoryInfo("Packages/com.bedtime.nest-builder/.DefaultBuildConfigurations");
 			if(!dir.Exists)
 			{
 				Debug.LogError("Default build configurations not found");

@@ -161,7 +161,7 @@ namespace BedtimeCore.NestBuilder
 					case BuildStep.PostConfiguration:
 						LogAllSettings();
 #if BEDTIME_ASSET_SYSTEM
-						if (build.Configuration.BuildSettings.assetBundlesCopy.Value.copyAssetBundles)
+						if (build.Configuration.BuildSettings.Main.AssetBundlesCopy.Value.copyAssetBundles)
 						{
 							build.AssetBundlesStatus = AssetBundlesStatus.Check;
 							await SetBuildStep(build, BuildStep.AddAssetBundles);
@@ -209,7 +209,7 @@ namespace BedtimeCore.NestBuilder
 			const string extManifest = ".manifest";
 			const string ignoreName = "_ignore";
 
-			AssetBundleBuildInfo assetBundles = build.Configuration.BuildSettings.assetBundlesCopy.Value;
+			AssetBundleBuildInfo assetBundles = build.Configuration.BuildSettings.Main.AssetBundlesCopy.Value;
 
 			if (assetBundles.buildAssetBundles && build.AssetBundlesStatus == AssetBundlesStatus.Check)
 			{
@@ -254,7 +254,7 @@ namespace BedtimeCore.NestBuilder
 		private static void CleanUpAssetBundles(Build build)
 		{
 #if BEDTIME_ASSET_SYSTEM
-			var assetBundles = build.Configuration.BuildSettings.assetBundlesCopy.Value;
+			var assetBundles = build.Configuration.BuildSettings.Main.AssetBundlesCopy.Value;
 			if (assetBundles.copyAssetBundles)
 			{
 				var destination = assetBundles.AssetBundlesDestination;

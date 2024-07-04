@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace BedtimeCore.NestBuilder
 {
 	public class BedtimeLoggingModule
@@ -7,10 +9,10 @@ namespace BedtimeCore.NestBuilder
 		public BoolSetting BedLogEnabled = new();
 
 		[Category("Logging")]
-		public EnumSetting<LogLevelEnum> LogLevel = new(LogSettings.SetLogLevelBuild);
+		public EnumSetting<LogLevelEnum> LogLevel = new(BedtimeCore.ProjectSettings.LogSettings.SetLogLevelBuild);
 
 		[Category("Logging")]
-		public EnumSetting<BedLogTarget> LogTargets = new(LogSettings.SetLogTargetsBuild);
+		public EnumSetting<BedLogTarget> LogTargets = new(BedtimeCore.ProjectSettings.LogSettings.SetLogTargetsBuild);
 #endif
 	}
 }

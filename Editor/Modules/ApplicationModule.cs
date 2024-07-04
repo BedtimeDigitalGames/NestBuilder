@@ -24,7 +24,7 @@ namespace BedtimeCore.NestBuilder
 
 #if BEDTIME_METADATA
 		[Category("Application")]
-		public MetadataSetting Metadata = new(EditorMetadata.ClearAndApply);
+		public MetadataSetting Metadata = new(BedtimeCore.Persistence.EditorMetadata.ClearAndApply);
 #endif
 
 	}

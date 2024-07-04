@@ -12,7 +12,7 @@ namespace BedtimeCore.NestBuilder
 		public Task<bool> ProcessBuild(Build build)
 		{
 #if BEDTIME_ASSET_SYSTEM
-			var assetBundlesSetting = build.Configuration.BuildSettings.assetBundlesCopy;
+			var assetBundlesSetting = build.Configuration.BuildSettings.Main.AssetBundlesCopy;
 			var settings = assetBundlesSetting.Value;
 
 			if (!assetBundlesSetting.IsSet || !settings.copyAssetBundles)

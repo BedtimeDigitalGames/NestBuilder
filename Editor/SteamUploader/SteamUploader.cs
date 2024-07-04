@@ -168,7 +168,7 @@ namespace BedtimeCore.SteamUploader
 			var revision = RepositoryRevision.FromGitDirectory().Revision;
 			if (revision != null)
 			{
-				description = $"[{dateTime}] [v{config.BuildSettings.version.Value}] [{revision.ShortIdentifier}] ({revision.Message})";
+				description = $"[{dateTime}] [v{config.BuildSettings.Application.Version.Value}] [{revision.ShortIdentifier}] ({revision.Message})";
 			}
 #endif	
 			
