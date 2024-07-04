@@ -13,6 +13,17 @@ namespace BedtimeCore.NestBuilder
 
 		[Category("Logging")]
 		public EnumSetting<BedLogTarget> LogTargets = new(BedtimeCore.ProjectSettings.LogSettings.SetLogTargetsBuild);
+		
+		[UnityEditor.Callbacks.DidReloadScripts]
+		private static void OnScriptReload()
+		{
+			if (Builder.IsBuilding)
+			{
+				return;
+			}
+			
+			BedtimeCore.ProjectSettings.LogSettingsUtility.SetLogDefine();
+		}
 #endif
 	}
 }
