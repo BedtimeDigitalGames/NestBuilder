@@ -1,5 +1,5 @@
 {
-    "name": "com.bedtime.build-pipeline.Editor",
+    "name": "com.bedtime.nest-builder.Editor",
     "rootNamespace": "",
     "references": [
         "com.bedtime.asset-system.Runtime",
