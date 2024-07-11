@@ -1,3 +1,4 @@
+[![openupm](https://img.shields.io/npm/v/com.bedtime.nest-builder?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.bedtime.nest-builder/)
 # NestBuilder for Unity
 A configurable build system for Unity that supports multiple configurations as assets, with each configuration able to inherit from other configurations.
 
