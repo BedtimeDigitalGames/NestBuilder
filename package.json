@@ -2,7 +2,7 @@
   "name": "com.bedtime.nest-builder",
   "displayName": "NestBuilder",
   "description": "NestBuilder",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": {
     "name": "Bedtime Digital Games",
     "url": "https://github.com/BedtimeDigitalGames/NestBuilder.git"
@@ -10,5 +10,6 @@
   "dependencies": {
     "com.unity.editorcoroutines": "1.0.0"
   },
-  "keywords": []
+  "keywords": [],
+  "unity": "2023.3"
 }
