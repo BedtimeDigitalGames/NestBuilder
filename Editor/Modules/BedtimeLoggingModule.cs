@@ -1,17 +1,19 @@
+using System;
 using System.ComponentModel;
 
 namespace BedtimeCore.NestBuilder
 {
-	public class BedtimeLoggingModule
+	[Serializable]
+	public class BedtimeLoggingModule : ISettingsModule
 	{
-#if BEDTIME_LOGGING
-		[Category("Logging"), Recompile]
+		#if BEDTIME_LOGGING
+		[Category("Bedtime Logging"), Recompile]
 		public BoolSetting BedLogEnabled = new();
 
-		[Category("Logging")]
+		[Category("Bedtime Logging")]
 		public EnumSetting<LogLevelEnum> LogLevel = new(BedtimeCore.ProjectSettings.LogSettings.SetLogLevelBuild);
 
-		[Category("Logging")]
+		[Category("Bedtime Logging")]
 		public EnumSetting<BedLogTarget> LogTargets = new(BedtimeCore.ProjectSettings.LogSettings.SetLogTargetsBuild);
 		
 		[UnityEditor.Callbacks.DidReloadScripts]
@@ -24,6 +26,6 @@ namespace BedtimeCore.NestBuilder
 			
 			BedtimeCore.ProjectSettings.LogSettingsUtility.SetLogDefine();
 		}
-#endif
+		#endif
 	}
 }

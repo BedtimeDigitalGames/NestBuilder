@@ -63,7 +63,7 @@ namespace BedtimeCore.NestBuilder
 			
 			#if BEDTIME_LOGGING
 			var loggingEnabledSetting = configuration.BuildSettings.BedtimeLogging.BedLogEnabled;
-			var loggingEnabled = loggingEnabledSetting.IsSet ? loggingEnabledSetting.Value : LogSettings.LoggingEnabled;
+			var loggingEnabled = (loggingEnabledSetting?.IsSet ?? false) ? loggingEnabledSetting.Value : LogSettings.LoggingEnabled;
 			var symbols = string.Join(";", newSymbols);
 			newSymbols = LogSettingsUtility.AddOrRemoveLoggingSymbol(symbols, loggingEnabled)
 			                               .Split(';')
