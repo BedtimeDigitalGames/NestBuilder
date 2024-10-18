@@ -16,9 +16,14 @@ namespace BedtimeCore.NestBuilder
 		[Category("Nintendo Switch")]
 		public BoolSetting NVNGraphicsDebugger = new(x => EditorUserBuildSettings.switchNVNGraphicsDebugger = x);
 
+#if UNITY_2023_3_OR_NEWER
 		[Category("Nintendo Switch")]
 		public BoolSetting RedirectWritesToHostMount = new(x => EditorUserBuildSettings.switchEnableHostIO = x);
-
+#else
+		public BoolSetting RedirectWritesToHostMount = new(x => EditorUserBuildSettings.switchRedirectWritesToHostMount = x);
+#endif
+		
+		
 		[Category("Nintendo Switch")]
 		public BoolSetting NetworkInterfaceManagerInitializeEnabled = new(x => PlayerSettings.Switch.networkInterfaceManagerInitializeEnabled = x);
 
