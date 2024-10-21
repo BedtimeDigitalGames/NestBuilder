@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using UnityEditor;
+using UnityEngine.iOS;
 
 namespace BedtimeCore.NestBuilder
 {
@@ -27,5 +28,23 @@ namespace BedtimeCore.NestBuilder
 		
 		[Category("iOS")]
 		public StringSetting MinimumVersion = new(x => PlayerSettings.iOS.targetOSVersionString = x);
+		
+		[Category("iOS")]
+		public BoolSetting HideHomeButton = new(x => PlayerSettings.iOS.hideHomeButton = x);
+		
+        [Category("iOS")]
+		public EnumSetting<SystemGestureDeferMode> DeferSystemGesturesMode = new(x => PlayerSettings.iOS.deferSystemGesturesMode = x);
+		
+        [Category("iOS")]
+		public BoolSetting DisableDepthAndStencilBuffers = new(x => PlayerSettings.iOS.disableDepthAndStencilBuffers = x);
+		
+        [Category("iOS")]
+		public BoolSetting RequiresPersistentWiFi = new(x => PlayerSettings.iOS.requiresPersistentWiFi = x);
+		
+        [Category("iOS")]
+		public BoolSetting ForceHardShadowsOnMetal = new(x => PlayerSettings.iOS.forceHardShadowsOnMetal = x);
+		
+        [Category("iOS")]
+		public BoolSetting UseOnDemandResources = new(x => PlayerSettings.iOS.useOnDemandResources = x);
 	}
 }
