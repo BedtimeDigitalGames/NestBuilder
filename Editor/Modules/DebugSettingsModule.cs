@@ -10,10 +10,13 @@ namespace BedtimeCore.NestBuilder
 		[Category("Debug")]
 		public BoolSetting AutoConnectProfiler = new(x => EditorUserBuildSettings.connectProfiler = x);
 
-		[Category("Debug")]
+        [Category("Debug")]
 		public BoolSetting AllowDebugging = new(x => EditorUserBuildSettings.allowDebugging = x);
 
-		[Category("Debug")]
+        [Category("Debug")]
+        public BoolSetting DeepProfilingSupport = new(x => EditorUserBuildSettings.buildWithDeepProfilingSupport = x);
+
+        [Category("Debug")]
 		public BoolSetting BuildScriptsOnly = new(x => EditorUserBuildSettings.buildScriptsOnly = x);
 
 		[Category("Debug")]
