@@ -8,10 +8,17 @@ namespace BedtimeCore.SteamUploader
 	public class SteamBuildButton : IBuildQueueExtension
 	{
 		private SteamUploader _uploader = new SteamUploader();
+        private string _branchNameOverride = string.Empty;
 		
 		public void OnGUI(Build build)
-		{
-            var buttonText = "Upload to Steam (" + build.Configuration.BuildSettings.Steam.SetLiveOnBranch.Value + ")";
+        {
+            var buildBranch = build.Configuration.BuildSettings.Steam.SetLiveOnBranch.Value;
+            if (!string.IsNullOrEmpty(_branchNameOverride))
+            {
+                buildBranch = _branchNameOverride;
+            }
+            
+            var buttonText = $"Upload to Steam ({buildBranch})";
 			if (_uploader.IsBusy)
 			{
 				buttonText = "Please Wait";
@@ -20,18 +27,23 @@ namespace BedtimeCore.SteamUploader
 			if(build.Metadata.Contains(SteamUploader.UPLOAD_COMPLETE_METADATA))
 			{
 				GUI.enabled = false;
-				buttonText = "Upload Complete (" + build.Configuration.BuildSettings.Steam.SetLiveOnBranch.Value + ")";
+				buttonText = $"Upload Complete ({buildBranch})";
 			}
 			if(build.Metadata.Contains(SteamUploader.UPLOAD_FAILED_METADATA))
 			{
 				GUI.enabled = true;
 				buttonText = "Upload Failed.. Retry?";
 			}
-			if (GUILayout.Button(buttonText))
-			{
-				_uploader.Upload(build);
-			}
-			GUI.enabled = true;
+
+            EditorGUILayout.BeginHorizontal("box");
+            if (GUILayout.Button(buttonText))
+            {
+                _uploader.Upload(build, buildBranch);
+            }
+            _branchNameOverride = TextInput(_branchNameOverride, "Branch Override");
+            EditorGUILayout.EndHorizontal();
+            
+            GUI.enabled = true;
 		}
 
 		public bool ShouldDisplay(Build build)
@@ -61,5 +73,19 @@ namespace BedtimeCore.SteamUploader
 			
 			return true;
 		}
+        
+        private string TextInput(string text, string placeholder) {
+            var newText = EditorGUILayout.TextField(text);
+            if (string.IsNullOrEmpty(text.Trim())) {
+                const int textMargin = 2;
+                var guiColor = GUI.color;
+                GUI.color = Color.grey;
+                var textRect = GUILayoutUtility.GetLastRect();
+                var position = new Rect(textRect.x + textMargin, textRect.y, textRect.width, textRect.height);
+                EditorGUI.LabelField(position, placeholder);
+                GUI.color = guiColor;
+            }
+            return newText;
+        }
 	}
 }

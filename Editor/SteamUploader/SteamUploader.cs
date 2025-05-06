@@ -61,7 +61,7 @@ namespace BedtimeCore.SteamUploader
 			return result;
 		}
 		
-		public async Task<SteamResult> Upload(Build build)
+		public async Task<SteamResult> Upload(Build build, string branchOverride = null)
 		{
 			if (_tcs != null)
 			{
@@ -79,7 +79,7 @@ namespace BedtimeCore.SteamUploader
 				return Fail(SteamResult.MissingSDK, build);
 			}
 			
-			var vdfPath = await WriteVDF(build);
+			var vdfPath = await WriteVDF(build, branchOverride);
 			var credentials = GetCredentials(build);
 			
 			if (!credentials.HasValue)
@@ -149,7 +149,7 @@ namespace BedtimeCore.SteamUploader
 			return Task.FromResult(steamCmd);
 		}
 		
-		async Task<string> WriteVDF(Build build)
+		async Task<string> WriteVDF(Build build, string branchOverride = null)
 		{
 			var config = build.Configuration;
 			var buildOutput = new DirectoryInfo($"{Application.temporaryCachePath}/Steam");
@@ -160,7 +160,7 @@ namespace BedtimeCore.SteamUploader
 
 			var appID = config.BuildSettings.Steam.AppID;
 			var depotID = config.BuildSettings.Steam.DepotID;
-			var setLiveBranch = config.BuildSettings.Steam.SetLiveOnBranch;
+			var setLiveBranch = branchOverride ?? config.BuildSettings.Steam.SetLiveOnBranch.Value;
 			
 			var dateTime = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
 			var description = dateTime;
@@ -181,7 +181,7 @@ namespace BedtimeCore.SteamUploader
 				Depot = new Depot(depotID.Value, "*", "."),
 				Preview = false,
 				Description = description,
-				SetLiveBranch = setLiveBranch.Value,
+				SetLiveBranch = setLiveBranch,
 			};
 
 			var vdfPath = $"{buildOutput.FullName}/build.vdf";
