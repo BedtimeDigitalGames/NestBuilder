@@ -27,9 +27,9 @@ namespace BedtimeCore.NestBuilder
 		
 		[SerializeField]
 		private List<IBuildQueueExtension> buildQueueExtensions = new List<IBuildQueueExtension>();
-		private List<BuildConfiguration> configurations;
-		
-		private void OnEnable()
+		private List<BuildConfiguration> configurations = new List<BuildConfiguration>();
+
+        private void OnEnable()
 		{
 			buildQueueExtensions.Clear();
 			foreach (Type type in TypeCache.GetTypesDerivedFrom<IBuildQueueExtension>())
@@ -55,18 +55,14 @@ namespace BedtimeCore.NestBuilder
 			}
 
 			ReloadConfigurations();
-			EditorApplication.projectChanged += ReloadConfigurations;
 		}
 
-		private void OnDisable()
-		{
-			EditorApplication.projectChanged -= ReloadConfigurations;
-		}
+        public void OnFocus() => ReloadConfigurations();
 
-		private GUIContent PlayPauseIcon => Builder.BuildQueue.IsPaused ? playIcon : pauseIcon;
+        private GUIContent PlayPauseIcon => Builder.BuildQueue.IsPaused ? playIcon : pauseIcon;
 
 		private void ReloadConfigurations()
-		{
+        {
 			configurations = AssetDatabase.FindAssets("t:BuildConfiguration")
 				.Select(AssetDatabase.GUIDToAssetPath)
 				.Select(AssetDatabase.LoadAssetAtPath<BuildConfiguration>)
@@ -107,7 +103,7 @@ namespace BedtimeCore.NestBuilder
 			{
 				BuildConfiguration.CreateBuildConfiguration();
 			}
-			if(BuildConfiguration.ConfigurationCount == 0 && GUILayout.Button("Create Default Configurations", EditorStyles.toolbarButton, GUILayout.ExpandWidth(true)))
+			if(configurations?.Count == 0 && GUILayout.Button("Create Default Configurations", EditorStyles.toolbarButton, GUILayout.ExpandWidth(true)))
 			{
 				BuildConfiguration.CreateDefaultBuildConfigurations();
 			}
@@ -115,11 +111,12 @@ namespace BedtimeCore.NestBuilder
 
 			scrollConfigurations = GUILayout.BeginScrollView(scrollConfigurations, GUIStyle.none, GUI.skin.GetStyle("VerticalScrollbar"));
 			
+            bool shouldReload = false;
 			foreach (var configuration in configurations)
 			{
 				if (configuration == null)
-				{
-					EditorApplication.delayCall += ReloadConfigurations;
+                {
+                    shouldReload = true;
 					break;
 				}
 				
@@ -137,7 +134,6 @@ namespace BedtimeCore.NestBuilder
 				}
 				EditorGUI.EndDisabledGroup();
 				EditorGUILayout.EndHorizontal();
-				
 			}
 			
 			EditorGUILayout.BeginVertical(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
@@ -148,6 +144,11 @@ namespace BedtimeCore.NestBuilder
 			
 			GUILayout.EndScrollView();
 			EditorGUILayout.EndVertical();
+
+            if (shouldReload)
+            {
+                EditorApplication.delayCall += ReloadConfigurations;
+            }
 		}
 
 		public void DrawQueue()
@@ -387,5 +388,5 @@ namespace BedtimeCore.NestBuilder
 				return listStyleCenter;
 			}
 		}
-	}
+    }
 }

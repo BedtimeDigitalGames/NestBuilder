@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 
 namespace BedtimeCore.NestBuilder
 {
@@ -29,8 +30,10 @@ namespace BedtimeCore.NestBuilder
 			EditorApplication.update += Update;
 			Selection.selectionChanged += RepaintAll;
 		}
-		
-		private void Update()
+
+        private void OnFocus() => inspector.OnFocus();
+
+        private void Update()
 		{
 			if (Builder.BuildQueue.Count > 0 && !Builder.BuildQueue.IsPaused)
 			{
