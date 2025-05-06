@@ -10,7 +10,8 @@
         "com.bedtime.versioning.Runtime",
         "com.bedtime.versioning.Editor",
         "Unity.EditorCoroutines.Editor",
-        "com.bedtime.storage"
+        "com.bedtime.storage",
+        "Unity.Addressables.Editor"
     ],
     "includePlatforms": [
         "Editor"
@@ -51,6 +52,11 @@
             "name": "com.bedtime.storage",
             "expression": "1.0.0",
             "define": "BEDTIME_STORAGE"
+        },
+        {
+            "name": "com.unity.addressables",
+            "expression": "2.0.0",
+            "define": "ADDRESSABLES"
         }
     ],
     "noEngineReferences": false
