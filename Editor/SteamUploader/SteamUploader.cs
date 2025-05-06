@@ -117,8 +117,9 @@ namespace BedtimeCore.SteamUploader
 			else
 			{
 				LogError($"Upload Failed. SteamCMD exited with an exit code = {processResult.exitCode}. [{dateTime}]");
+                return Fail(SteamResult.Failure, build);
 			}
-			Finish(success ? Progress.Status.Succeeded : Progress.Status.Failed);
+			Finish(Progress.Status.Succeeded);
 			
 			_tcs = null;
 		
@@ -188,15 +189,15 @@ namespace BedtimeCore.SteamUploader
 			Log($"VDF:\n{vdf}");
 
 			var vdfString = vdf.ToString();
-			#if UNITY_2021_2_OR_NEWER
+#if UNITY_2021_2_OR_NEWER
 			await File.WriteAllTextAsync(vdfPath, vdfString);
-			#else
+#else
 			byte[] encodedText = Encoding.Unicode.GetBytes(vdfString);
 			using (var sourceStream = new FileStream(vdfPath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
 			{
 				await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
 			};
-			#endif
+#endif
 			
 			return vdfPath;
 		}
