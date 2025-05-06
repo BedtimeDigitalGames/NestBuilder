@@ -334,6 +334,7 @@ namespace BedtimeCore.NestBuilder
 
 			var development = settings.Debugging.IsDevelopment.Value;
 			var allowDebugging = settings.Debugging.AllowDebugging.Value;
+            var deepProfilingSupport = settings.Debugging.DeepProfilingSupport.Value;
 			var autoConnectProfiler = settings.Debugging.AutoConnectProfiler.Value;
 			var buildScriptsOnly = settings.Debugging.BuildScriptsOnly.Value;
 			var platform = settings.Main.Platform.Value;
@@ -348,6 +349,10 @@ namespace BedtimeCore.NestBuilder
 			{
 				buildOptions |= BuildOptions.AllowDebugging;
 			}
+            if (deepProfilingSupport && development)
+            {
+                buildOptions |= BuildOptions.EnableDeepProfilingSupport;
+            }
 			if (autoConnectProfiler && (development || platform.buildTarget == BuildTarget.WSAPlayer))
 			{
 				buildOptions |= BuildOptions.ConnectWithProfiler;
