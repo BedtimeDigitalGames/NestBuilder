@@ -97,8 +97,12 @@ namespace BedtimeCore.NestBuilder
 							continue;
 						}
 					}
-					setting.Initialize(fInfo.Name, this, fInfo.GetCustomAttributes(typeof(Attribute), true) as Attribute[]);
-					tempList.Add(setting);
+                    if(setting == null)
+                    {
+                        continue;
+                    }
+                    setting.Initialize(fInfo.Name, this, fInfo.GetCustomAttributes(typeof(Attribute), true) as Attribute[]);
+                    tempList.Add(setting);
 				}
 				else if (typeof(ISettingsModule).IsAssignableFrom(fInfo.FieldType))
 				{

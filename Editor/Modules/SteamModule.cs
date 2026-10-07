@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace BedtimeCore.NestBuilder
@@ -14,6 +15,9 @@ namespace BedtimeCore.NestBuilder
 
 		[Category("Steam")]
 		public IntSetting DepotID = new();
+        
+        [Category("Steam")]
+        public BuildSetting<string[]> FileExclusions = new(null);
 
 		[Category("Steam")]
 		public SecretSetting SDKPath = new("STEAM_SDK_PATH", false);

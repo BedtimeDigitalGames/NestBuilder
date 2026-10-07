@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace BedtimeCore.Versioning.Editor
 {
+    [Serializable]
 	public class VersionFileWriter : IBuildProcessor
 	{
 		private const string SMALL_VERSION_FILE_NAME = "version.txt";

@@ -71,7 +71,6 @@ namespace BedtimeCore.SteamUploader
 			
 			_progressId = Progress.Start("Steam Uploader", "Starting Steam Uploader", Progress.Options.Sticky);
 			Progress.SetTimeDisplayMode(_progressId, Progress.TimeDisplayMode.ShowRunningTime);
-			Progress.ShowDetails(false);
 			Report("Starting Steam Uploader", 0.1f);
 			
 			if (await RetrieveSDK(build) is var steamCmd && steamCmd == null)
@@ -98,7 +97,7 @@ namespace BedtimeCore.SteamUploader
 					return Fail(SteamResult.SteamGuard, build);
 				}
 				
-				Report("Steam Guard", 0.8f);
+				Report("Steam Guard", 0.85f);
 				var steamGuardCode = await SteamGuardWindow.ShowWindow();
 				args = $"+set_steam_guard_code {steamGuardCode} +login {credentials.Value.login} {credentials.Value.password} +run_app_build \"{vdfPath}\" +quit";
 				processResult = await RunProcessAsync(steamCmd.FullName, args);
@@ -157,6 +156,8 @@ namespace BedtimeCore.SteamUploader
 		
 			var contentRoot = new DirectoryInfo($"{build.OutputDirectory}"); 
 			contentRoot.Create();
+            
+            var fileExclusions = config.BuildSettings.Steam.FileExclusions.Value ?? new string[] { };
 
 			var appID = config.BuildSettings.Steam.AppID;
 			var depotID = config.BuildSettings.Steam.DepotID;
@@ -178,7 +179,7 @@ namespace BedtimeCore.SteamUploader
 				BuildOutput = $"{buildOutput.FullName}",
 				ContentRoot = $"{contentRoot.FullName}",
 				AppID = appID.Value,
-				Depot = new Depot(depotID.Value, "*", "."),
+				Depot = new Depot(depotID.Value, "*", ".", fileExclusions),
 				Preview = false,
 				Description = description,
 				SetLiveBranch = setLiveBranch,

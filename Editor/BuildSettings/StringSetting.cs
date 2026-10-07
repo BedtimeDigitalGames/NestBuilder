@@ -13,6 +13,6 @@ namespace BedtimeCore.NestBuilder
 		public override void DrawValue(BuildConfiguration topLevel, SerializedProperty property)
 		{
 			value = EditorGUILayout.TextField(value);
-		}
+        }
 	}
 }

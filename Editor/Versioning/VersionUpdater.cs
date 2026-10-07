@@ -1,9 +1,11 @@
 #if BEDTIME_VERSIONING
+using System;
 using System.Threading.Tasks;
 using BedtimeCore.NestBuilder;
 
 namespace BedtimeCore.Versioning.Editor
 {
+    [Serializable]
 	public class VersionUpdater : IBuildProcessor
 	{
 		public BuildStep ValidBuildSteps => BuildStep.PreBuild;

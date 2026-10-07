@@ -10,25 +10,26 @@ namespace BedtimeCore.SteamUploader
 		public string BuildOutput { get; set; }
 		public bool Preview { get; set; }
 		public Depot Depot { get; set; }
-		
 		public string SetLiveBranch { get; set; }
 		
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
-			sb.AppendLine($"\"AppBuild\"");
+            
+			sb.AppendLine($"{Quote("AppBuild")}");
 			sb.AppendLine("{");
-			sb.AppendLine($"\"AppID\" \"{AppID}\"");
-			sb.AppendLine($"\"Preview\" \"{(Preview ? 1 : 0)}\"");
-			sb.AppendLine($"\"Desc\" \"{Description}\"");
-			sb.AppendLine($"\"ContentRoot\" \"{ContentRoot}\"");
+            sb.AppendLine($"{Quote("AppID")} {Quote(AppID)}");
+			sb.AppendLine($"{Quote("Preview")} {Quote(Preview ? 1 : 0)}");
+			sb.AppendLine($"{Quote("Desc")} {Quote(Description)}");
+			sb.AppendLine($"{Quote("ContentRoot")} {Quote(ContentRoot)}");
+
 			if(!string.IsNullOrEmpty(SetLiveBranch))
 			{
-				sb.AppendLine($"\"SetLive\" \"{SetLiveBranch}\"");
+				sb.AppendLine($"{Quote("SetLive")} {Quote(SetLiveBranch)}");
 			}
-			sb.AppendLine($"\"BuildOutput\" \"{BuildOutput}\"");
+			sb.AppendLine($"{Quote("BuildOutput")} {Quote(BuildOutput)}");
 				
-			sb.AppendLine($"\"Depots\"");
+			sb.AppendLine($"{Quote("Depots")}");
 			sb.AppendLine("{");
 			sb.AppendLine(Depot.ToString());
 			sb.AppendLine("}");
@@ -36,5 +37,10 @@ namespace BedtimeCore.SteamUploader
 			
 			return sb.ToString();
 		}
+
+        internal static string Quote(object value)
+        {
+            return $"\"{value}\"";
+        }
 	}
 }

@@ -6,7 +6,7 @@ using System.Linq;
 namespace BedtimeCore.NestBuilder
 {
 	[Serializable]
-	public abstract class BuildSetting<T> : IBuildSetting, IEquatable<BuildSetting<T>>
+	public class BuildSetting<T> : IBuildSetting, IEquatable<BuildSetting<T>>
 	{
 		public BuildConfiguration Owner { get; set; }
 		public string Name { get; set; }
@@ -129,7 +129,10 @@ namespace BedtimeCore.NestBuilder
 			}
 		}
 
-		public abstract void DrawValue(BuildConfiguration topLevel, SerializedProperty property);
+        public virtual void DrawValue(BuildConfiguration topLevel, SerializedProperty property)
+        {
+            EditorGUILayout.PropertyField(property, GUIContent.none);
+        }
 
 		public TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute
 		{
